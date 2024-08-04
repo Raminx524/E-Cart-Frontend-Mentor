@@ -38,9 +38,9 @@ function App() {
   }, []);
   if (!products) return <p>Loading...</p>;
   return (
-    <div className="bg-myRose-50 py-8 font-red-hat">
+    <div className="bg-myRose-50 py-8 font-red-hat flex flex-col">
       <div className="w-5/6 mx-auto space-y-7 md:flex">
-        <div className="flex flex-col gap-7">
+        <div className="flex flex-col gap-7 items-center">
           <h1 className="font-bold text-4xl">Desserts</h1>
           <ul className="flex flex-col gap-5 md:flex-row md:flex-wrap">
             {products.map((product: IProduct) => {

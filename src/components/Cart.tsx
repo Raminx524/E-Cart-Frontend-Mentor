@@ -1,4 +1,15 @@
 import { ICartItem, IProduct } from "@/App";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
 interface CartProps {
   cart: ICartItem[];
   setCart: React.Dispatch<React.SetStateAction<ICartItem[]>>;
@@ -49,7 +60,7 @@ function Cart(props: CartProps) {
                   )
                 )
               }
-              className="rounded-full border p-1 h-5 w-5 border-myRose-400 flex items-center justify-center"
+              className="rounded-full border p-1 h-5 w-5 border-myRose-400 flex items-center justify-center group hover:border-2"
             >
               <img src="src/assets/images/icon-remove-item.svg" />
             </button>
@@ -74,9 +85,83 @@ function Cart(props: CartProps) {
           delivery
         </p>
       </div>
-      <button className="bg-myRed w-full rounded-full text-white py-4">
-        Confirm Order
-      </button>
+
+      <Dialog>
+        <DialogTrigger className="bg-myRed w-full rounded-full text-white py-4 hover:bg-red-800">
+          Confirm Order
+        </DialogTrigger>
+        <DialogContent className="rounded-lg">
+          <DialogHeader className="text-left space-y-3 flex flex-col items-start">
+            <img
+              src="src/assets/images/icon-order-confirmed.svg"
+              className="w-12 mb-2"
+            />
+            <DialogTitle className="text-myRose-900 font-bold text-5xl">
+              Order Confirmed
+            </DialogTitle>
+            <DialogDescription className="text-myRose-500">
+              We hope you enjoy your food!
+            </DialogDescription>
+          </DialogHeader>
+          <div className="bg-myRose-50 rounded-lg p-5">
+            <div>
+              {cart.map((cartItem: ICartItem) => (
+                <div
+                  key={cartItem.id}
+                  className="flex justify-between items-center border-b pb-5"
+                >
+                  <div className="flex gap-4">
+                    <img
+                      src={cartItem.image.thumbnail}
+                      className="w-12 rounded-lg"
+                    />
+                    <div className="space-y-2">
+                      <p className="font-semibold text-myRose-900 text-sm">
+                        {cartItem.name}
+                      </p>
+                      <div className="flex gap-4 items-center">
+                        <span className="text-myRed font-semibold text-sm">
+                          {cartItem.quantity}x
+                        </span>
+                        <div className="space-x-2">
+                          <span className="text-myRose-400 text-sm">
+                            @ ${cartItem.price.toFixed(2)}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <span className="text-myRose-900 font-semibold text-lg">
+                    ${(cartItem.price * cartItem.quantity).toFixed(2)}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <div className="flex justify-between items-center pt-">
+              <p className="text-sm text-myRose-500 font-medium">Order Total</p>
+              <p className="text-2xl font-bold">
+                $
+                {cart
+                  .reduce((acc, cartItem) => {
+                    return acc + +cartItem.price * +cartItem.quantity;
+                  }, 0)
+                  .toFixed(2)}
+              </p>
+            </div>
+          </div>
+          <DialogFooter>
+            <DialogClose asChild>
+              <button
+                type="submit"
+                onClick={() => setCart([])}
+                className="bg-myRed w-full rounded-full text-white py-4 hover:bg-red-800"
+              >
+                Start New Order
+              </button>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

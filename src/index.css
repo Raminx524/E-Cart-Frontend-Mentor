@@ -67,3 +67,10 @@
     @apply bg-background text-foreground;
   }
 }
+.group-hover\:filter:hover {
+  filter: invert(0);
+}
+
+.group-hover\:invert:hover {
+  filter: invert(1);
+}

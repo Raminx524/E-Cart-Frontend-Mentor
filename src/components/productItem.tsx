@@ -73,9 +73,12 @@ function ProductItem(props: ProductItemProps) {
                   ev.stopPropagation();
                   handleQuantityChange(product.id, "DECREMENT");
                 }}
-                className="text-xl rounded-full border border-white w-4 h-4 flex items-center justify-center p-2"
+                className="text-xl rounded-full border border-white w-5 h-5 flex items-center justify-center hover:bg-white group"
               >
-                -
+                <img
+                  src="src/assets/images/icon-decrement-quantity.svg"
+                  className="group-hover:filter group-hover:invert"
+                />
               </div>
               <p>{productFromCart?.quantity}</p>
               <div
@@ -83,9 +86,12 @@ function ProductItem(props: ProductItemProps) {
                   ev.stopPropagation();
                   handleQuantityChange(product.id, "INCREMENT");
                 }}
-                className="text-xl rounded-full border border-white w-4 h-4 flex items-center justify-center p-2"
+                className="group text-xl rounded-full border border-white w-5 h-5 flex items-center justify-center hover:bg-white"
               >
-                +
+                <img
+                  src="src/assets/images/icon-increment-quantity.svg"
+                  className="group-hover:filter group-hover:invert"
+                />
               </div>
             </div>
           ) : (

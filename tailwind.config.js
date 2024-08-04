@@ -17,6 +17,10 @@ module.exports = {
       },
     },
     extend: {
+      filter: {
+        "invert-1": "invert(1)",
+        "invert-0": "invert(0)",
+      },
       fontFamily: {
         "red-hat": ['"Red Hat Text"', "sans-serif"],
       },
@@ -84,6 +88,11 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+    },
+  },
+  variants: {
+    extend: {
+      filter: ["hover"],
     },
   },
   plugins: [require("tailwindcss-animate")],
