@@ -1,6 +1,7 @@
 import { ICartItem, IProduct } from "@/App";
 import { useState, useEffect } from "react";
 import useDeviceType from "@/services/useDeviceType";
+import { Button } from "./ui/button";
 
 interface ProductItemProps {
   product: IProduct;
@@ -50,7 +51,7 @@ function ProductItem(props: ProductItemProps) {
     <li className="space-y-8">
       <div className="relative">
         <img
-          className={`rounded-lg max-w-80 ${
+          className={`rounded-lg max-w-60 ${
             isInCart ? "outline outline-myRed" : ""
           }`}
           src={
@@ -60,7 +61,7 @@ function ProductItem(props: ProductItemProps) {
           }
         />
         <button
-          className={`px-3 absolute -bottom-5 left-20 h-10 w-40 rounded-full border ${
+          className={`px-3 absolute -bottom-5 left-10 h-10 w-40 rounded-full border ${
             !isInCart ? "bg-white border-myRose-500" : "bg-myRed border-myRed"
           }  `}
           onClick={(ev) => addToCart(ev, product)}
